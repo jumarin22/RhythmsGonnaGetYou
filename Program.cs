@@ -123,7 +123,7 @@ namespace RhythmsGonnaGetYou
                     AddBand();
                     break;
                 case "a":
-                    //AddAlbum();
+                    AddAlbum();
                     break;
                 case "s":
                     //AddSong();
@@ -132,7 +132,33 @@ namespace RhythmsGonnaGetYou
                     Console.WriteLine("Sorry, I don't understand.");
                     break;
             }
+        }
 
+        private static void AddSong()
+        {
+
+        }
+
+        private static void AddAlbum()
+        {
+            var context = new RhythmsGonnaGetYouContext();
+            Console.WriteLine("Please enter the album information:");
+            Console.Write("Title: "); var albumTitle = Console.ReadLine();
+            Console.Write("Is the album explicit? (true / false): "); var albumExplicit = Console.ReadLine();
+            Console.Write("Release Date: YYYY-MM-DD: "); var albumDate = Console.ReadLine();
+            Console.Write("Band ID: "); var albumBand = Console.ReadLine();
+
+
+            var newAlbum = new Album
+            {
+                Title = albumTitle,
+                IsExplicit = bool.Parse(albumExplicit),
+                ReleaseDate = DateTime.Parse(albumDate),
+                BandId = int.Parse(albumBand)
+            };
+
+            context.Albums.Add(newAlbum);
+            context.SaveChanges();
         }
 
         private static void AddBand()
