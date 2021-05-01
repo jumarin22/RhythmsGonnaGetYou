@@ -126,7 +126,7 @@ namespace RhythmsGonnaGetYou
                     AddAlbum();
                     break;
                 case "s":
-                    //AddSong();
+                    AddSong();
                     break;
                 default:
                     Console.WriteLine("Sorry, I don't understand.");
@@ -136,7 +136,23 @@ namespace RhythmsGonnaGetYou
 
         private static void AddSong()
         {
+            var context = new RhythmsGonnaGetYouContext();
+            Console.WriteLine("Please enter the song information:");
+            Console.Write("Track Number: "); var songTrack = Console.ReadLine();
+            Console.Write("Title: "); var songTitle = Console.ReadLine();
+            Console.Write("Duration (mm:ss): "); var songDuration = Console.ReadLine();
+            Console.Write("Album ID: "); var songAlbum = Console.ReadLine();
 
+            var newSong = new Song
+            {
+                Track = int.Parse(songTrack),
+                Title = songTitle,
+                Duration = songDuration,
+                AlbumId = int.Parse(songAlbum)
+            };
+
+            context.Songs.Add(newSong);
+            context.SaveChanges();
         }
 
         private static void AddAlbum()
