@@ -64,13 +64,6 @@ namespace RhythmsGonnaGetYou
             var bandCount = context.Bands.Count();
             Console.WriteLine($"There are {bandCount} bands!");
 
-
-
-            // Create a menu system that shows the following options to the user until they choose to quit your program
-
-            // Add a new band, album, or song.
-            // Quit the program
-
             // Main user interface.
             var keepRunning = true;
             while (keepRunning)
