@@ -87,7 +87,7 @@ namespace RhythmsGonnaGetYou
                 switch (userChoice)
                 {
                     case "a":
-                        // ;
+                        AddSomething();
                         break;
                     case "s":
                         SeeBands();
@@ -109,6 +109,59 @@ namespace RhythmsGonnaGetYou
                         break;
                 }
             }
+        }
+
+        private static void AddSomething()
+        {
+            Console.WriteLine("What would you like to add?");
+            Console.WriteLine("(B)and\n(A)lbum\n(S)ong");
+            var uChoice = Console.ReadLine().ToLower();
+
+            switch (uChoice)
+            {
+                case "b":
+                    AddBand();
+                    break;
+                case "a":
+                    //AddAlbum();
+                    break;
+                case "s":
+                    //AddSong();
+                    break;
+                default:
+                    Console.WriteLine("Sorry, I don't understand.");
+                    break;
+            }
+
+        }
+
+        private static void AddBand()
+        {
+            var context = new RhythmsGonnaGetYouContext();
+            Console.WriteLine("Please enter the band information:");
+            Console.Write("Name: "); var bandName = Console.ReadLine();
+            Console.Write("Country: "); var bandCountry = Console.ReadLine();
+            Console.Write("Number of Members: "); var bandMembers = Console.ReadLine();
+            Console.Write("Website: "); var bandWebsite = Console.ReadLine();
+            Console.Write("Style: "); var bandStyle = Console.ReadLine();
+            Console.Write("Are they contracted? (true / false): "); var bandIsSigned = Console.ReadLine();
+            Console.Write("Contact Name: "); var bandContact = Console.ReadLine();
+            Console.Write("Contact Phone: "); var bandPhone = Console.ReadLine();
+
+            var newBand = new Band
+            {
+                Name = bandName,
+                CountryOfOrigin = bandCountry,
+                NumberOfMembers = int.Parse(bandMembers),
+                Website = bandWebsite,
+                Style = bandStyle,
+                IsSigned = bool.Parse(bandIsSigned),
+                ContactName = bandContact,
+                ContactPhoneNumber = int.Parse(bandPhone)
+            };
+
+            context.Bands.Add(newBand);
+            context.SaveChanges();
         }
 
         private static void SeeBands()
