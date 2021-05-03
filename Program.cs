@@ -102,6 +102,8 @@ namespace RhythmsGonnaGetYou
                         break;
                 }
             }
+
+            Console.WriteLine("Goodbye!");
         }
 
         private static void AddSomething()
